@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>México — Roteiro de Viagem 🇲🇽</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #006847;
+    --verde-dark: #004C33;
+    --verde-light: #E8F5EE;
+    --vermelho: #CE1126;
+    --vermelho-light: #FFF0F0;
+    --ouro: #C8A84B;
+    --branco: #FFFFFF;
+    --cream: #FFF9F3;
+    --texto: #1A1A1A;
+    --cinza: #777777;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--verde);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .flag-stripes {
+    position: absolute; inset: 0;
+    display: flex;
+  }
+  .flag-stripes .s1 { flex: 1; background: var(--vermelho); }
+  .flag-stripes .s2 { flex: 1; background: var(--branco); }
+  .flag-stripes .s3 { flex: 1; background: var(--verde); }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-overlay {
+    background: rgba(0,0,0,0.52);
+    border-radius: 1rem;
+    padding: 3rem 4rem;
+    backdrop-filter: blur(2px);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 900;
+    color: var(--branco);
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--branco);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+    opacity: 0.9;
+  }
+
+  .hero-dates {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+  }
+
+  .eagle { font-size: 4rem; margin-bottom: 0.5rem; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.7); font-size: 0.85rem; letter-spacing: 0.2em;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ── NAV ── */
+  .nav-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--verde-dark);
+    display: flex; gap: 0; overflow-x: auto;
+    scrollbar-width: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .nav-bar::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 0.75rem 1.2rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--branco);
+    background: rgba(255,255,255,0.1);
+    border-bottom-color: var(--ouro);
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    scroll-margin-top: 50px;
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--verde);
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--verde-dark);
+  }
+
+  .day-badge {
+    background: var(--verde);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .day-badge.red { background: var(--vermelho); }
+  .day-badge.gold { background: var(--ouro); color: var(--texto); }
+  .day-badge.blue { background: #0077AA; }
+  .day-badge.purple { background: #6B21A8; }
+  .day-badge.dark { background: #333; }
+
+  /* ── OVERVIEW GRID ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .overview-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem 1.2rem;
+    border-left: 5px solid var(--verde);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .overview-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .overview-card.red { border-color: var(--vermelho); }
+  .overview-card.gold { border-color: var(--ouro); }
+  .overview-card.blue { border-color: #0077AA; }
+  .overview-card.purple { border-color: #6B21A8; }
+  .overview-card.dark { border-color: #555; }
+
+  .ov-day { font-size: 0.7rem; font-weight: 700; color: var(--cinza); letter-spacing: 0.1em; text-transform: uppercase; }
+  .ov-label { font-size: 1rem; font-weight: 700; color: var(--texto); margin: 0.2rem 0; }
+  .ov-desc { font-size: 0.8rem; color: var(--cinza); line-height: 1.4; }
+
+  /* ── DAY CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .cards-grid.single { grid-template-columns: 1fr; }
+  .cards-grid.two { grid-template-columns: repeat(2, 1fr); }
+
+  .card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem 1.2rem;
+    border-left: 5px solid var(--verde);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+  .card.lunch { border-color: var(--vermelho); }
+  .card.coffee { border-color: var(--ouro); }
+  .card.afternoon { border-color: #0077AA; }
+  .card.night { border-color: #6B21A8; }
+  .card.wide { grid-column: 1 / -1; }
+
+  .card-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.3rem;
+    color: var(--verde);
+  }
+  .card.lunch .card-label { color: var(--vermelho); }
+  .card.coffee .card-label { color: #A87C2A; }
+  .card.afternoon .card-label { color: #0077AA; }
+  .card.night .card-label { color: #6B21A8; }
+
+  .card-name { font-size: 1.05rem; font-weight: 700; color: var(--texto); margin-bottom: 0.25rem; }
+
+  .card-meta {
+    font-size: 0.82rem; color: var(--cinza);
+    display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+  }
+
+  .price-tag {
+    background: #F0FBF4; color: var(--verde-dark);
+    padding: 0.15rem 0.5rem; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+
+  .note-tag {
+    font-style: italic; color: #999; font-size: 0.78rem;
+  }
+
+  .reserve-tag {
+    background: #FFF3F3; color: var(--vermelho);
+    padding: 0.15rem 0.5rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+  }
+
+  .link-btn {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.4rem;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--verde);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--verde);
+    transition: all 0.2s;
+  }
+  .link-btn:hover { color: var(--vermelho); border-color: var(--vermelho); }
+
+  /* ── SUMMARY (Slide 10) ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .summary-grid { grid-template-columns: 1fr; }
+    .cards-grid.two { grid-template-columns: 1fr; }
+    .hero-overlay { padding: 2rem 1.5rem; }
+  }
+
+  .summary-block {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .summary-header {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--verde);
+  }
+  .summary-header.red { background: var(--vermelho); }
+  .summary-header.gold { background: var(--ouro); color: var(--texto); }
+  .summary-header.purple { background: #6B21A8; }
+
+  .summary-list {
+    list-style: none;
+    padding: 0.75rem 1rem;
+  }
+  .summary-list li {
+    padding: 0.35rem 0;
+    font-size: 0.87rem;
+    color: var(--texto);
+    border-bottom: 1px solid #F5F5F5;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .summary-list li:last-child { border-bottom: none; }
+  .summary-list li a { color: var(--verde); text-decoration: none; font-weight: 600; }
+  .summary-list li a:hover { color: var(--vermelho); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, var(--verde), var(--vermelho));
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--verde-dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+  }
+
+  footer strong { color: white; }
+
+  /* Animation */
+  .section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="flag-stripes">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-overlay">
+      <div class="eagle">🦅</div>
+      <h1>MÉXICO</h1>
+      <div class="hero-sub">Roteiro de Viagem</div>
+      <div class="hero-dates">Cidade do México &nbsp;•&nbsp; Dias 13 – 20</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>EXPLORAR</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <button class="nav-btn" onclick="goTo('visao')">🗺️ Visão Geral</button>
+  <button class="nav-btn" onclick="goTo('dia13')">📅 Dia 13–14</button>
+  <button class="nav-btn" onclick="goTo('dia15')">🏛️ Dia 15</button>
+  <button class="nav-btn" onclick="goTo('dia16')">🌳 Dia 16</button>
+  <button class="nav-btn" onclick="goTo('dia17')">🎨 Dia 17</button>
+  <button class="nav-btn" onclick="goTo('dia18')">🏙️ Dia 18</button>
+  <button class="nav-btn" onclick="goTo('dia19')">🏛️ Dia 19</button>
+  <button class="nav-btn" onclick="goTo('dia20')">✈️ Dia 20</button>
+  <button class="nav-btn" onclick="goTo('resumo')">📋 Resumo</button>
+</nav>
+
+<!-- VISÃO GERAL -->
+<div class="section" id="visao">
+  <div class="section-header">
+    <h2>🗺️ Visão Geral da Viagem</h2>
+  </div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="ov-day">Dia 13</div>
+      <div class="ov-label">🌙 Chegada</div>
+      <div class="ov-desc">Check-in • Jantar no Lardo • Primeira noite na CDMX</div>
+    </div>
+    <div class="overview-card red">
+      <div class="ov-day">Dia 14</div>
+      <div class="ov-label">🏛️ Centro Histórico</div>
+      <div class="ov-desc">Zócalo • Catedral • Palácio Nacional • Rooftop Cha Cha Cha</div>
+    </div>
+    <div class="overview-card gold">
+      <div class="ov-day">Dia 15</div>
+      <div class="ov-label">🏛️ Teotihuacán</div>
+      <div class="ov-desc">Balão/Tour • Panadería Rosetta • Contramar</div>
+    </div>
+    <div class="overview-card blue">
+      <div class="ov-day">Dia 16</div>
+      <div class="ov-label">🌳 Chapultepec + Polanco</div>
+      <div class="ov-desc">Bosque • Bike • El Turix • Lucha Libre</div>
+    </div>
+    <div class="overview-card purple">
+      <div class="ov-day">Dia 17</div>
+      <div class="ov-label">🎨 Coyoacán + Xochimilco</div>
+      <div class="ov-desc">Frida Kahlo • Los Danzantes • Trajineras</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-day">Dia 18</div>
+      <div class="ov-label">🏙️ Roma Norte</div>
+      <div class="ov-desc">Mercado Roma • Madre Café • Parque México • Supra Rooftop</div>
+    </div>
+    <div class="overview-card red">
+      <div class="ov-day">Dia 19</div>
+      <div class="ov-label">🏛️ Último Dia Completo</div>
+      <div class="ov-desc">Casa Barragán • Mercado San Juan • Máximo Bistrot</div>
+    </div>
+    <div class="overview-card dark">
+      <div class="ov-day">Dia 20</div>
+      <div class="ov-label">✈️ Partida (Voo 00:40)</div>
+      <div class="ov-desc">Passeios • Café da tarde • Aeroporto à noite</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 13 + 14 -->
+<div class="section" id="dia13">
+  <div class="section-header">
+    <span class="day-badge">Dia 13</span>
+    <h2>🌙 Chegada (18h)</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-label">🏨 Check-in</div>
+      <div class="card-name">Hotel + Descanso</div>
+      <div class="card-meta"><span class="note-tag">Aproveite para descansar da viagem</span></div>
+    </div>
+    <div class="card night">
+      <div class="card-label">🍽️ Jantar</div>
+      <div class="card-name">Lardo CDMX</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 80–120</span>
+        <span class="note-tag">Sem reserva necessária</span>
+      </div>
+      <a href="https://maps.google.com/?q=Lardo+CDMX" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:2rem;">
+    <span class="day-badge red">Dia 14</span>
+    <h2>🏛️ Centro Histórico</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Monumentos</div>
+      <div class="card-name">Zócalo • Catedral Metropolitana • Palácio Nacional</div>
+      <div class="card-meta">
+        <span class="price-tag">Grátis</span>
+        <span class="note-tag">Café no hotel ✔</span>
+      </div>
+      <a href="https://maps.google.com/?q=Zocalo+CDMX" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">Azul Histórico</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 100–150</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+      </div>
+      <a href="https://maps.google.com/?q=Azul+Historico" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-name">Café de Tacuba 🔥</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 30–60</span>
+        <span class="note-tag">Encaixe perfeito — sem deslocamento</span>
+      </div>
+      <a href="https://maps.google.com/?q=Cafe+de+Tacuba" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card night">
+      <div class="card-label">🌇 Rooftop</div>
+      <div class="card-name">Terraza Cha Cha Cha</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 120–200</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+      </div>
+      <a href="https://maps.google.com/?q=Terraza+Cha+Cha+Cha" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 15 -->
+<div class="section" id="dia15">
+  <div class="section-header">
+    <span class="day-badge gold">Dia 15</span>
+    <h2>🏛️ Teotihuacán</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Experiência Principal</div>
+      <div class="card-name">🎈 Balão / Tour Teotihuacán</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 900–1.200</span>
+        <span class="reserve-tag">🎟 Comprar antes</span>
+        <span class="note-tag">Café no hotel ✔</span>
+      </div>
+      <a href="https://www.getyourguide.com" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde (na volta)</div>
+      <div class="card-name">Panadería Rosetta 🔥</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 30–60</span>
+        <span class="note-tag">Melhor pós-passeio possível</span>
+      </div>
+      <a href="https://maps.google.com/?q=Panaderia+Rosetta" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card night">
+      <div class="card-label">🌙 Jantar</div>
+      <div class="card-name">Contramar</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 150–250</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+      </div>
+      <a href="https://maps.google.com/?q=Contramar" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 16 -->
+<div class="section" id="dia16">
+  <div class="section-header">
+    <span class="day-badge blue">Dia 16</span>
+    <h2>🌳 Chapultepec + Polanco + Lucha Libre</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Bosque de Chapultepec</div>
+      <div class="card-name">🌳 Bosque de Chapultepec + Bike</div>
+      <div class="card-meta">
+        <span class="price-tag">Grátis + bike R$ 30–60</span>
+        <span class="note-tag">Café no hotel ✔ • Pedalar pelo parque</span>
+      </div>
+      <a href="https://maps.google.com/?q=Chapultepec" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">El Turix</div>
+      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Cochinita pibil imperdível</span></div>
+      <a href="https://maps.google.com/?q=El+Turix" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-name">Quentin Café</div>
+      <div class="card-meta"><span class="price-tag">R$ 30–50</span><span class="note-tag">Polanco — ambiente moderno</span></div>
+      <a href="https://maps.google.com/?q=Quentin+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card afternoon wide">
+      <div class="card-label">☀️ Tarde — Passeio em Polanco</div>
+      <div class="card-name">Masaryk + Tesla (visita rápida)</div>
+      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Vitrines e arquitetura de Polanco</span></div>
+    </div>
+    <div class="card night wide">
+      <div class="card-label">🥊 Noite — Entretenimento</div>
+      <div class="card-name">Lucha Libre</div>
+      <div class="card-meta"><span class="price-tag">R$ 80–200</span><span class="reserve-tag">🎟 Comprar antes</span></div>
+      <a href="https://www.ticketmaster.com.mx" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 17 -->
+<div class="section" id="dia17">
+  <div class="section-header">
+    <span class="day-badge purple">Dia 17</span>
+    <h2>🎨 Coyoacán + Xochimilco</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Museu</div>
+      <div class="card-name">🎟️ Museu Frida Kahlo — Casa Azul</div>
+      <div class="card-meta">
+        <span class="price-tag">~R$ 100</span>
+        <span class="reserve-tag">🎟 Comprar antes</span>
+        <span class="note-tag">Café no hotel ✔</span>
+      </div>
+      <a href="https://boletos.museofridakahlo.org.mx" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">Los Danzantes</div>
+      <div class="card-meta"><span class="price-tag">R$ 120–180</span><span class="note-tag">Gastronomia mexicana contemporânea</span></div>
+      <a href="https://maps.google.com/?q=Los+Danzantes" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-name">Café Avellaneda</div>
+      <div class="card-meta"><span class="price-tag">R$ 30–50</span><span class="note-tag">Café especial em Coyoacán</span></div>
+      <a href="https://maps.google.com/?q=Cafe+Avellaneda" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card afternoon wide">
+      <div class="card-label">🚤 Tarde — Experiência Única</div>
+      <div class="card-name">Xochimilco — Trajineras (canais)</div>
+      <div class="card-meta"><span class="price-tag">R$ 150–250</span><span class="note-tag">Reserve barca compartilhada • Tradicional e imperdível</span></div>
+      <a href="https://maps.google.com/?q=Xochimilco" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 18 -->
+<div class="section" id="dia18">
+  <div class="section-header">
+    <span class="day-badge">Dia 18</span>
+    <h2>🏙️ Roma Norte — Dia Perfeito</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã</div>
+      <div class="card-name">Explorar Roma Norte</div>
+      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Café no hotel ✔ • Ruas de arte, galerias, livrarias</span></div>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">Mercado Roma</div>
+      <div class="card-meta"><span class="price-tag">R$ 50–80</span><span class="note-tag">Gastronomia variada • Ótimo custo-benefício</span></div>
+      <a href="https://maps.google.com/?q=Mercado+Roma" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde (TOP)</div>
+      <div class="card-name">Madre Café 🔥</div>
+      <div class="card-meta"><span class="price-tag">R$ 50–90</span><span class="note-tag">Melhor momento pra café especial</span></div>
+      <a href="https://maps.google.com/?q=Madre+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card afternoon">
+      <div class="card-label">🌳 Tarde — Parque</div>
+      <div class="card-name">Parque México</div>
+      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Caminhar, relaxar, vida local</span></div>
+      <a href="https://maps.google.com/?q=Parque+Mexico" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card night">
+      <div class="card-label">🌇 Noite — Rooftop</div>
+      <div class="card-name">Supra Roma Rooftop 🔥</div>
+      <div class="card-meta"><span class="price-tag">R$ 120–180</span><span class="note-tag">Vista panorâmica de Roma Norte</span></div>
+      <a href="https://maps.google.com/?q=Supra+Roma" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 19 -->
+<div class="section" id="dia19">
+  <div class="section-header">
+    <span class="day-badge red">Dia 19</span>
+    <h2>🏛️ Último Dia Completo</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Arquitetura</div>
+      <div class="card-name">🎟️ Casa Luis Barragán</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 200</span>
+        <span class="reserve-tag">📅 Agendar</span>
+        <span class="note-tag">Café no hotel ✔</span>
+      </div>
+      <a href="https://casaluisbarragan.org" target="_blank" class="link-btn">🎟 Agendar visita ↗</a>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">Mercado San Juan</div>
+      <div class="card-meta"><span class="price-tag">R$ 50–100</span><span class="note-tag">Queijos importados, frutos do mar, gourmet</span></div>
+      <a href="https://maps.google.com/?q=Mercado+San+Juan" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-name">Cardinal Casa de Café</div>
+      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Café especial e ambiente aconchegante</span></div>
+      <a href="https://maps.google.com/?q=Cardinal+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+    <div class="card night wide">
+      <div class="card-label">🌙 Jantar Final — Despedida</div>
+      <div class="card-name">Máximo Bistrot ⭐</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 200–300</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+        <span class="note-tag">Experiência gastronômica de nível — despedida perfeita</span>
+      </div>
+      <a href="https://maps.google.com/?q=Maximo+Bistrot" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DIA 20 -->
+<div class="section" id="dia20">
+  <div class="section-header">
+    <span class="day-badge dark">Dia 20</span>
+    <h2>✈️ Dia Completo + Voo 00:40</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card wide">
+      <div class="card-label">🌅 Manhã — Dia disponível</div>
+      <div class="card-name">Café + Passeio final a definir</div>
+      <div class="card-meta"><span class="price-tag">Livre</span><span class="note-tag">Aproveite o hotel e explore os arredores</span></div>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-name">Restaurante favorito ou novo</div>
+      <div class="card-meta"><span class="price-tag">R$ 60–150</span><span class="note-tag">Último almoço mexicano — capricha!</span></div>
+    </div>
+    <div class="card coffee">
+      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-name">Último café especial da viagem</div>
+      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Escolha um dos favoritos</span></div>
+    </div>
+    <div class="card afternoon">
+      <div class="card-label">☀️ Tarde — Últimas Experiências</div>
+      <div class="card-name">Artesanato / Souvenirs</div>
+      <div class="card-meta"><span class="price-tag">Variável</span><span class="note-tag">Presentinhos e recordações do México</span></div>
+    </div>
+    <div class="card night wide">
+      <div class="card-label">🌙 Noite — Jantar + Aeroporto</div>
+      <div class="card-name">Jantar leve + Deslocamento ao Aeroporto NAICM ✈️</div>
+      <div class="card-meta">
+        <span class="price-tag">R$ 50–100 + transfer</span>
+        <span class="note-tag">Sair com ~3h de antecedência • Voo 00:40 • Boa viagem! 🇧🇷</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESUMO -->
+<div class="section" id="resumo">
+  <div class="section-header">
+    <h2>📋 Cafés • Rooftops • Custos • Checklist</h2>
+  </div>
+  <div class="summary-grid">
+
+    <div class="summary-block">
+      <div class="summary-header gold">☕ Melhores Cafés</div>
+      <ul class="summary-list">
+        <li>☕ <span>Café de Tacuba — R$ 30–60 (Centro)</span></li>
+        <li>☕ <span>Panadería Rosetta — R$ 30–60 (Roma)</span></li>
+        <li>☕ <span>Quentin Café — R$ 30–50 (Polanco)</span></li>
+        <li>☕ <span>Café Avellaneda — R$ 30–50 (Coyoacán)</span></li>
+        <li>☕ <span>Madre Café — R$ 50–90 (Roma Norte) 🔥</span></li>
+        <li>☕ <span>Cardinal Casa de Café — R$ 30–60 (Centro)</span></li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-header purple">🌇 Melhores Rooftops</div>
+      <ul class="summary-list">
+        <li>🌇 <span>Terraza Cha Cha Cha — R$ 120–200 (Centro)</span></li>
+        <li>🌇 <span>Supra Roma Rooftop — R$ 120–180 (Roma)</span></li>
+        <li>🌇 <span>Vista das Pirâmides (Teotihuacán) 🎈</span></li>
+        <li>🌇 <span>Xochimilco (ao ar livre, dia)</span></li>
+        <li>🌇 <span>Bosque de Chapultepec (panorâmica)</span></li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-header red">💰 Custos Estimados</div>
+      <ul class="summary-list">
+        <li>🍽️ <span>Refeições: R$ 50–300 por dia</span></li>
+        <li>🎟️ <span>Museu Frida Kahlo: ~R$ 100</span></li>
+        <li>🎈 <span>Balão Teotihuacán: R$ 900–1.200</span></li>
+        <li>🚤 <span>Xochimilco: R$ 150–250</span></li>
+        <li>🥊 <span>Lucha Libre: R$ 80–200</span></li>
+        <li>🏛️ <span>Casa Barragán: R$ 200</span></li>
+        <li>🚲 <span>Bike Chapultepec: R$ 30–60</span></li>
+        <li>✈️ <span>Transfer aeroporto: R$ 80–150</span></li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-header">✅ Checklist Pré-Viagem</div>
+      <ul class="summary-list">
+        <li>🎟️ <a href="https://www.getyourguide.com" target="_blank">Balão Teotihuacán — getyourguide.com</a></li>
+        <li>🎟️ <a href="https://boletos.museofridakahlo.org.mx" target="_blank">Frida Kahlo — boletos.museofridakahlo.org.mx</a></li>
+        <li>🎟️ <a href="https://www.ticketmaster.com.mx" target="_blank">Lucha Libre — ticketmaster.com.mx</a></li>
+        <li>📅 <span>Azul Histórico — reservar</span></li>
+        <li>📅 <span>Terraza Cha Cha Cha — reservar</span></li>
+        <li>📅 <span>Contramar — reservar</span></li>
+        <li>📅 <span>Máximo Bistrot — reservar</span></li>
+        <li>📅 <a href="https://casaluisbarragan.org" target="_blank">Casa Barragán — casaluisbarragan.org</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <strong>🇲🇽 México — Roteiro de Viagem</strong><br>
+  Cidade do México • Dias 13–20 • Bom apetite e boa aventura! 🌮🎉
+</footer>
+
+<script>
+  function goTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Intersection observer for section animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  // Nav active state
+  const sections = document.querySelectorAll('.section');
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const sectionIds = ['visao','dia13','dia15','dia16','dia17','dia18','dia19','dia20','resumo'];
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sectionIds.indexOf(e.target.id);
+        navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) navObserver.observe(el);
+  });
+</script>
+</body>
+</html>
