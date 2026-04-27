@@ -168,6 +168,7 @@
   .day-badge.blue { background: #0077AA; }
   .day-badge.purple { background: #6B21A8; }
   .day-badge.dark { background: #333; }
+  .day-badge.teal { background: #0D7A6B; }
 
   /* ── OVERVIEW GRID ── */
   .overview-grid {
@@ -190,6 +191,7 @@
   .overview-card.blue { border-color: #0077AA; }
   .overview-card.purple { border-color: #6B21A8; }
   .overview-card.dark { border-color: #555; }
+  .overview-card.teal { border-color: #0D7A6B; }
 
   .ov-day { font-size: 0.7rem; font-weight: 700; color: var(--cinza); letter-spacing: 0.1em; text-transform: uppercase; }
   .ov-label { font-size: 1rem; font-weight: 700; color: var(--texto); margin: 0.2rem 0; }
@@ -220,6 +222,7 @@
   .card.afternoon { border-color: #0077AA; }
   .card.night { border-color: #6B21A8; }
   .card.wide { grid-column: 1 / -1; }
+  .card.optional { border-style: dashed; opacity: 0.85; }
 
   .card-label {
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
@@ -244,12 +247,21 @@
     font-size: 0.75rem; font-weight: 600;
   }
 
+  .price-tag.free { background: #E8F8F0; color: #1A7A4A; }
+  .price-tag.paid { background: #FFF3E0; color: #B06000; }
+
   .note-tag {
     font-style: italic; color: #999; font-size: 0.78rem;
   }
 
   .reserve-tag {
     background: #FFF3F3; color: var(--vermelho);
+    padding: 0.15rem 0.5rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600;
+  }
+
+  .optional-tag {
+    background: #F0F4FF; color: #3344AA;
     padding: 0.15rem 0.5rem; border-radius: 999px;
     font-size: 0.72rem; font-weight: 600;
   }
@@ -265,7 +277,21 @@
   }
   .link-btn:hover { color: var(--vermelho); border-color: var(--vermelho); }
 
-  /* ── SUMMARY (Slide 10) ── */
+  .links-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+
+  /* ── OPTIONS BOX ── */
+  .options-box {
+    background: #FFFBF0;
+    border: 2px solid var(--ouro);
+    border-radius: 0.75rem;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.5rem;
+    grid-column: 1 / -1;
+  }
+  .options-box h4 { font-size: 0.8rem; font-weight: 700; color: #A87C2A; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .options-box p { font-size: 0.85rem; color: var(--texto); margin-bottom: 0.3rem; }
+
+  /* ── SUMMARY ── */
   .summary-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -297,6 +323,7 @@
   .summary-header.red { background: var(--vermelho); }
   .summary-header.gold { background: var(--ouro); color: var(--texto); }
   .summary-header.purple { background: #6B21A8; }
+  .summary-header.blue { background: #0077AA; }
 
   .summary-list {
     list-style: none;
@@ -347,7 +374,7 @@
       <div class="eagle">🦅</div>
       <h1>MÉXICO</h1>
       <div class="hero-sub">Roteiro de Viagem</div>
-      <div class="hero-dates">Cidade do México &nbsp;•&nbsp; Dias 13 – 20</div>
+      <div class="hero-dates">Cidade do México • Puebla • Cholula &nbsp;|&nbsp; Dias 13 – 20</div>
     </div>
   </div>
   <div class="scroll-hint">
@@ -359,12 +386,13 @@
 <!-- NAV -->
 <nav class="nav-bar">
   <button class="nav-btn" onclick="goTo('visao')">🗺️ Visão Geral</button>
-  <button class="nav-btn" onclick="goTo('dia13')">📅 Dia 13–14</button>
-  <button class="nav-btn" onclick="goTo('dia15')">🏛️ Dia 15</button>
+  <button class="nav-btn" onclick="goTo('dia13')">🌙 Dia 13</button>
+  <button class="nav-btn" onclick="goTo('dia14')">🏛️ Dia 14</button>
+  <button class="nav-btn" onclick="goTo('dia15')">🏔️ Dia 15</button>
   <button class="nav-btn" onclick="goTo('dia16')">🌳 Dia 16</button>
   <button class="nav-btn" onclick="goTo('dia17')">🎨 Dia 17</button>
   <button class="nav-btn" onclick="goTo('dia18')">🏙️ Dia 18</button>
-  <button class="nav-btn" onclick="goTo('dia19')">🏛️ Dia 19</button>
+  <button class="nav-btn" onclick="goTo('dia19')">🌆 Dia 19</button>
   <button class="nav-btn" onclick="goTo('dia20')">✈️ Dia 20</button>
   <button class="nav-btn" onclick="goTo('resumo')">📋 Resumo</button>
 </nav>
@@ -378,111 +406,174 @@
     <div class="overview-card">
       <div class="ov-day">Dia 13</div>
       <div class="ov-label">🌙 Chegada</div>
-      <div class="ov-desc">Check-in • Jantar no Lardo • Primeira noite na CDMX</div>
+      <div class="ov-desc">Check-in • Jantar no Lardo • Caminhada leve em Roma/Condesa</div>
     </div>
     <div class="overview-card red">
       <div class="ov-day">Dia 14</div>
       <div class="ov-label">🏛️ Centro Histórico</div>
-      <div class="ov-desc">Zócalo • Catedral • Palácio Nacional • Rooftop Cha Cha Cha</div>
+      <div class="ov-desc">Zócalo • Catedral • Templo Mayor • Bellas Artes • Cha Cha Cha</div>
     </div>
     <div class="overview-card gold">
       <div class="ov-day">Dia 15</div>
-      <div class="ov-label">🏛️ Teotihuacán</div>
-      <div class="ov-desc">Balão/Tour • Panadería Rosetta • Contramar</div>
+      <div class="ov-label">🏔️ Teotihuacán</div>
+      <div class="ov-desc">Pirâmides • La Gruta • Panadería Rosetta • Contramar</div>
     </div>
     <div class="overview-card blue">
       <div class="ov-day">Dia 16</div>
       <div class="ov-label">🌳 Chapultepec + Polanco</div>
-      <div class="ov-desc">Bosque • Bike • El Turix • Lucha Libre</div>
+      <div class="ov-desc">Bosque • Museu de Antropologia • Castelo • El Turix • Lucha Libre</div>
     </div>
     <div class="overview-card purple">
       <div class="ov-day">Dia 17</div>
       <div class="ov-label">🎨 Coyoacán + Xochimilco</div>
-      <div class="ov-desc">Frida Kahlo • Los Danzantes • Trajineras</div>
+      <div class="ov-desc">Frida Kahlo • Mercado • Los Danzantes • Trajineras</div>
     </div>
     <div class="overview-card">
       <div class="ov-day">Dia 18</div>
-      <div class="ov-label">🏙️ Roma Norte</div>
+      <div class="ov-label">🏙️ Roma Norte + Condesa</div>
       <div class="ov-desc">Mercado Roma • Madre Café • Parque México • Supra Rooftop</div>
     </div>
-    <div class="overview-card red">
+    <div class="overview-card teal">
       <div class="ov-day">Dia 19</div>
-      <div class="ov-label">🏛️ Último Dia Completo</div>
-      <div class="ov-desc">Casa Barragán • Mercado San Juan • Máximo Bistrot</div>
+      <div class="ov-label">🌆 Puebla + Cholula</div>
+      <div class="ov-desc">Bate-volta colonial e arqueológico • Pirâmide de Cholula • Máximo Bistrot</div>
     </div>
     <div class="overview-card dark">
       <div class="ov-day">Dia 20</div>
       <div class="ov-label">✈️ Partida (Voo 00:40)</div>
-      <div class="ov-desc">Passeios • Café da tarde • Aeroporto à noite</div>
+      <div class="ov-desc">Roma/Condesa • Café final • La Ciudadela • Aeroporto 21h</div>
     </div>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- DIA 13 + 14 -->
+<!-- DIA 13 -->
 <div class="section" id="dia13">
   <div class="section-header">
     <span class="day-badge">Dia 13</span>
-    <h2>🌙 Chegada (18h)</h2>
+    <h2>🌙 Chegada (~18h) — Roma Norte</h2>
   </div>
   <div class="cards-grid">
     <div class="card">
       <div class="card-label">🏨 Check-in</div>
       <div class="card-name">Hotel + Descanso</div>
-      <div class="card-meta"><span class="note-tag">Aproveite para descansar da viagem</span></div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Deixe as malas, respire — você chegou!</span>
+      </div>
     </div>
     <div class="card night">
       <div class="card-label">🍽️ Jantar</div>
       <div class="card-name">Lardo CDMX</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 80–120</span>
+        <span class="price-tag paid">Pago • R$ 80–120</span>
         <span class="note-tag">Sem reserva necessária</span>
       </div>
-      <a href="https://maps.google.com/?q=Lardo+CDMX" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Lardo+CDMX+Roma+Norte" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
+    </div>
+    <div class="card optional afternoon wide">
+      <div class="card-label">🚶 Caminhada Opcional — Se houver energia</div>
+      <div class="card-name">Roma Norte / Condesa a pé</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="optional-tag">Opcional</span>
+        <span class="note-tag">Ruas arborizadas, casarões, clima da cidade</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Roma Norte ↗</a>
+        <a href="https://maps.google.com/?q=Condesa+CDMX" target="_blank" class="link-btn">📍 Condesa ↗</a>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="section-header" style="margin-top:2rem;">
+<div class="divider"></div>
+
+<!-- DIA 14 -->
+<div class="section" id="dia14">
+  <div class="section-header">
     <span class="day-badge red">Dia 14</span>
-    <h2>🏛️ Centro Histórico</h2>
+    <h2>🏛️ Centro Histórico — Tudo a Pé</h2>
   </div>
   <div class="cards-grid">
     <div class="card wide">
-      <div class="card-label">🌅 Manhã — Monumentos</div>
-      <div class="card-name">Zócalo • Catedral Metropolitana • Palácio Nacional</div>
+      <div class="card-label">🌅 Manhã — Monumentos (roteiro a pé)</div>
+      <div class="card-name">Zócalo • Catedral Metropolitana • Palácio Nacional • Templo Mayor</div>
       <div class="card-meta">
-        <span class="price-tag">Grátis</span>
-        <span class="note-tag">Café no hotel ✔</span>
+        <span class="price-tag free">Zócalo: Grátis</span>
+        <span class="price-tag free">Catedral: Grátis</span>
+        <span class="price-tag free">Palácio Nacional: Grátis</span>
+        <span class="price-tag paid">Templo Mayor: Pago ~R$ 50</span>
       </div>
-      <a href="https://maps.google.com/?q=Zocalo+CDMX" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Zocalo+Ciudad+de+Mexico" target="_blank" class="link-btn">📍 Zócalo ↗</a>
+        <a href="https://maps.google.com/?q=Catedral+Metropolitana+CDMX" target="_blank" class="link-btn">📍 Catedral ↗</a>
+        <a href="https://maps.google.com/?q=Palacio+Nacional+CDMX" target="_blank" class="link-btn">📍 Palácio Nacional ↗</a>
+        <a href="https://maps.google.com/?q=Templo+Mayor+CDMX" target="_blank" class="link-btn">📍 Templo Mayor ↗</a>
+      </div>
     </div>
     <div class="card lunch">
       <div class="card-label">🍽️ Almoço</div>
       <div class="card-name">Azul Histórico</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 100–150</span>
+        <span class="price-tag paid">Pago • R$ 100–150</span>
         <span class="reserve-tag">⚠ Reservar</span>
       </div>
-      <a href="https://maps.google.com/?q=Azul+Historico" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Azul+Historico+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.opentable.com.mx" target="_blank" class="link-btn">📅 Reservar ↗</a>
+      </div>
     </div>
     <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-label">☕ Café da Tarde — no caminho</div>
       <div class="card-name">Café de Tacuba 🔥</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 30–60</span>
-        <span class="note-tag">Encaixe perfeito — sem deslocamento</span>
+        <span class="price-tag paid">Pago • R$ 30–60</span>
+        <span class="note-tag">No caminho perfeito — sem desvio</span>
       </div>
-      <a href="https://maps.google.com/?q=Cafe+de+Tacuba" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Cafe+de+Tacuba+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
+    </div>
+    <div class="card afternoon">
+      <div class="card-label">🎨 Tarde — Cultura</div>
+      <div class="card-name">Palácio de Bellas Artes + Calle Madero</div>
+      <div class="card-meta">
+        <span class="price-tag free">Bellas Artes exterior: Grátis</span>
+        <span class="price-tag paid">Interior: Pago ~R$ 20</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Palacio+de+Bellas+Artes+CDMX" target="_blank" class="link-btn">📍 Bellas Artes ↗</a>
+        <a href="https://maps.google.com/?q=Calle+Madero+CDMX" target="_blank" class="link-btn">📍 Calle Madero ↗</a>
+      </div>
+    </div>
+    <div class="card optional afternoon">
+      <div class="card-label">🏙️ Opcional — Mirante</div>
+      <div class="card-name">Torre Latinoamericana</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago ~R$ 60</span>
+        <span class="optional-tag">Opcional</span>
+        <span class="note-tag">Vista panorâmica do Centro</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Torre+Latinoamericana+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.torrelatino.com" target="_blank" class="link-btn">🎟 Site oficial ↗</a>
+      </div>
     </div>
     <div class="card night">
-      <div class="card-label">🌇 Rooftop</div>
+      <div class="card-label">🌇 Noite — Rooftop</div>
       <div class="card-name">Terraza Cha Cha Cha</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 120–200</span>
+        <span class="price-tag paid">Pago • R$ 120–200</span>
         <span class="reserve-tag">⚠ Reservar</span>
       </div>
-      <a href="https://maps.google.com/?q=Terraza+Cha+Cha+Cha" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Terraza+Cha+Cha+Cha+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.instagram.com/terrazachachacha" target="_blank" class="link-btn">📅 Reservar via Instagram ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -493,36 +584,75 @@
 <div class="section" id="dia15">
   <div class="section-header">
     <span class="day-badge gold">Dia 15</span>
-    <h2>🏛️ Teotihuacán</h2>
+    <h2>🏔️ Teotihuacán — Pirâmides</h2>
   </div>
   <div class="cards-grid">
+    <div class="options-box">
+      <h4>🎈 Opções para Teotihuacán</h4>
+      <p><strong>Opção A (recomendada):</strong> Visita tradicional às pirâmides — entrada paga, chegue cedo para evitar calor e multidões.</p>
+      <p><strong>Opção B (especial):</strong> Balão ao amanhecer — experiência única, mas opcional. Contrate apenas por empresas confiáveis como Globo Antiguo.</p>
+    </div>
     <div class="card wide">
-      <div class="card-label">🌅 Manhã — Experiência Principal</div>
-      <div class="card-name">🎈 Balão / Tour Teotihuacán</div>
+      <div class="card-label">🌅 Manhã — Zona Arqueológica</div>
+      <div class="card-name">Teotihuacán — Pirâmide do Sol • Pirâmide da Lua • Avenida dos Mortos</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 900–1.200</span>
-        <span class="reserve-tag">🎟 Comprar antes</span>
-        <span class="note-tag">Café no hotel ✔</span>
+        <span class="price-tag paid">Entrada: Pago ~R$ 60</span>
+        <span class="note-tag">Sair cedo — ideal chegar às 8h</span>
       </div>
-      <a href="https://www.getyourguide.com" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Zona+Arqueologica+Teotihuacan" target="_blank" class="link-btn">📍 Zona Arqueológica ↗</a>
+        <a href="https://maps.google.com/?q=Piramide+del+Sol+Teotihuacan" target="_blank" class="link-btn">📍 Pirâmide do Sol ↗</a>
+        <a href="https://maps.google.com/?q=Piramide+de+la+Luna+Teotihuacan" target="_blank" class="link-btn">📍 Pirâmide da Lua ↗</a>
+      </div>
+    </div>
+    <div class="card optional">
+      <div class="card-label">🎈 Opcional — Balão</div>
+      <div class="card-name">Voo de Balão ao Amanhecer</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 900–1.200</span>
+        <span class="optional-tag">Opcional</span>
+        <span class="reserve-tag">🎟 Comprar antes</span>
+      </div>
+      <div class="links-row">
+        <a href="https://www.globoantiguo.com" target="_blank" class="link-btn">🎟 Globo Antiguo (confiável) ↗</a>
+        <a href="https://www.getyourguide.com/teotihuacan-l93452/teotihuacan-hot-air-balloon-t66476/" target="_blank" class="link-btn">🎟 GetYourGuide ↗</a>
+      </div>
+    </div>
+    <div class="card lunch">
+      <div class="card-label">🍽️ Almoço — No próprio sítio</div>
+      <div class="card-name">Restaurante La Gruta 🔥</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 100–180</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+        <span class="note-tag">Dentro de uma caverna de lava — imperdível</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=La+Gruta+Teotihuacan" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://lagruta.com.mx" target="_blank" class="link-btn">📅 Site oficial ↗</a>
+      </div>
     </div>
     <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde (na volta)</div>
+      <div class="card-label">☕ Café da Tarde — Na volta</div>
       <div class="card-name">Panadería Rosetta 🔥</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 30–60</span>
+        <span class="price-tag paid">Pago • R$ 30–60</span>
         <span class="note-tag">Melhor pós-passeio possível</span>
       </div>
-      <a href="https://maps.google.com/?q=Panaderia+Rosetta" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Panaderia+Rosetta+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card night">
       <div class="card-label">🌙 Jantar</div>
       <div class="card-name">Contramar</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 150–250</span>
+        <span class="price-tag paid">Pago • R$ 150–250</span>
         <span class="reserve-tag">⚠ Reservar</span>
       </div>
-      <a href="https://maps.google.com/?q=Contramar" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Contramar+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.contramar.com.mx" target="_blank" class="link-btn">📅 Site oficial ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -533,40 +663,102 @@
 <div class="section" id="dia16">
   <div class="section-header">
     <span class="day-badge blue">Dia 16</span>
-    <h2>🌳 Chapultepec + Polanco + Lucha Libre</h2>
+    <h2>🌳 Chapultepec + Museus + Polanco + Lucha Libre</h2>
   </div>
   <div class="cards-grid">
     <div class="card wide">
       <div class="card-label">🌅 Manhã — Bosque de Chapultepec</div>
-      <div class="card-name">🌳 Bosque de Chapultepec + Bike</div>
+      <div class="card-name">🌳 Bosque de Chapultepec</div>
       <div class="card-meta">
-        <span class="price-tag">Grátis + bike R$ 30–60</span>
-        <span class="note-tag">Café no hotel ✔ • Pedalar pelo parque</span>
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Chegue cedo • Pedalar é ótima pedida</span>
       </div>
-      <a href="https://maps.google.com/?q=Chapultepec" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Bosque+de+Chapultepec+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
+    </div>
+    <div class="card optional">
+      <div class="card-label">🚲 Opcional — Bike</div>
+      <div class="card-name">Aluguel de Bicicleta no Parque</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 30–60</span>
+        <span class="optional-tag">Opcional</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Ecobici+Chapultepec" target="_blank" class="link-btn">📍 Ecobici ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">🏛️ Manhã — Museu Imperdível</div>
+      <div class="card-name">Museu Nacional de Antropologia</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago ~R$ 60</span>
+        <span class="note-tag">Um dos melhores museus do mundo</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Museo+Nacional+de+Antropologia+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.mna.inah.gob.mx" target="_blank" class="link-btn">🎟 Site oficial ↗</a>
+      </div>
+    </div>
+    <div class="card optional afternoon">
+      <div class="card-label">🏰 Opcional — Castelo</div>
+      <div class="card-name">Castelo de Chapultepec</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago ~R$ 50</span>
+        <span class="optional-tag">Opcional</span>
+        <span class="note-tag">Vista incrível da cidade</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Castillo+de+Chapultepec+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.mnh.inah.gob.mx" target="_blank" class="link-btn">🎟 Site oficial ↗</a>
+      </div>
     </div>
     <div class="card lunch">
-      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-label">🍽️ Almoço — Em Polanco</div>
       <div class="card-name">El Turix</div>
-      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Cochinita pibil imperdível</span></div>
-      <a href="https://maps.google.com/?q=El+Turix" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 30–60</span>
+        <span class="note-tag">Cochinita pibil imperdível</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=El+Turix+Polanco+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde</div>
+      <div class="card-label">☕ Café da Tarde — Polanco</div>
       <div class="card-name">Quentin Café</div>
-      <div class="card-meta"><span class="price-tag">R$ 30–50</span><span class="note-tag">Polanco — ambiente moderno</span></div>
-      <a href="https://maps.google.com/?q=Quentin+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 30–50</span>
+        <span class="note-tag">Ambiente moderno e agradável</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Quentin+Cafe+Polanco+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
-    <div class="card afternoon wide">
+    <div class="card afternoon">
       <div class="card-label">☀️ Tarde — Passeio em Polanco</div>
-      <div class="card-name">Masaryk + Tesla (visita rápida)</div>
-      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Vitrines e arquitetura de Polanco</span></div>
+      <div class="card-name">Avenida Presidente Masaryk</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">A Champs-Élysées mexicana — vitrines e arquitetura</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Avenida+Presidente+Masaryk+Polanco" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card night wide">
       <div class="card-label">🥊 Noite — Entretenimento</div>
-      <div class="card-name">Lucha Libre</div>
-      <div class="card-meta"><span class="price-tag">R$ 80–200</span><span class="reserve-tag">🎟 Comprar antes</span></div>
-      <a href="https://www.ticketmaster.com.mx" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+      <div class="card-name">Lucha Libre — Arena México ou Arena Coliseo</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 80–200</span>
+        <span class="reserve-tag">🎟 Comprar antes</span>
+        <span class="note-tag">Experiência cultural única — leve o espírito!</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Arena+Mexico+CDMX" target="_blank" class="link-btn">📍 Arena México ↗</a>
+        <a href="https://maps.google.com/?q=Arena+Coliseo+CDMX" target="_blank" class="link-btn">📍 Arena Coliseo ↗</a>
+        <a href="https://www.ticketmaster.com.mx" target="_blank" class="link-btn">🎟 Ticketmaster ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -584,29 +776,62 @@
       <div class="card-label">🌅 Manhã — Museu</div>
       <div class="card-name">🎟️ Museu Frida Kahlo — Casa Azul</div>
       <div class="card-meta">
-        <span class="price-tag">~R$ 100</span>
-        <span class="reserve-tag">🎟 Comprar antes</span>
+        <span class="price-tag paid">Pago ~R$ 100</span>
+        <span class="reserve-tag">🎟 Comprar antes — esgota!</span>
         <span class="note-tag">Café no hotel ✔</span>
       </div>
-      <a href="https://boletos.museofridakahlo.org.mx" target="_blank" class="link-btn">🎟 Comprar ingresso ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Museo+Frida+Kahlo+Coyoacan" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://boletos.museofridakahlo.org.mx" target="_blank" class="link-btn">🎟 Comprar ingresso (site oficial) ↗</a>
+      </div>
+    </div>
+    <div class="card afternoon">
+      <div class="card-label">🏘️ Manhã — Centro de Coyoacán</div>
+      <div class="card-name">Centro de Coyoacán + Mercado de Coyoacán</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Praça charmosa, artesanato, tacos e cerveja de limão</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Centro+de+Coyoacan+CDMX" target="_blank" class="link-btn">📍 Centro Coyoacán ↗</a>
+        <a href="https://maps.google.com/?q=Mercado+de+Coyoacan+CDMX" target="_blank" class="link-btn">📍 Mercado Coyoacán ↗</a>
+      </div>
     </div>
     <div class="card lunch">
       <div class="card-label">🍽️ Almoço</div>
       <div class="card-name">Los Danzantes</div>
-      <div class="card-meta"><span class="price-tag">R$ 120–180</span><span class="note-tag">Gastronomia mexicana contemporânea</span></div>
-      <a href="https://maps.google.com/?q=Los+Danzantes" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 120–180</span>
+        <span class="reserve-tag">⚠ Reservar se possível</span>
+        <span class="note-tag">Gastronomia mexicana contemporânea</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Los+Danzantes+Coyoacan" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://losdanzantes.com" target="_blank" class="link-btn">📅 Site oficial ↗</a>
+      </div>
     </div>
     <div class="card coffee">
       <div class="card-label">☕ Café da Tarde</div>
       <div class="card-name">Café Avellaneda</div>
-      <div class="card-meta"><span class="price-tag">R$ 30–50</span><span class="note-tag">Café especial em Coyoacán</span></div>
-      <a href="https://maps.google.com/?q=Cafe+Avellaneda" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 30–50</span>
+        <span class="note-tag">Café especial em Coyoacán — muito gostoso</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Cafe+Avellaneda+Coyoacan" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card afternoon wide">
       <div class="card-label">🚤 Tarde — Experiência Única</div>
       <div class="card-name">Xochimilco — Trajineras (canais)</div>
-      <div class="card-meta"><span class="price-tag">R$ 150–250</span><span class="note-tag">Reserve barca compartilhada • Tradicional e imperdível</span></div>
-      <a href="https://maps.google.com/?q=Xochimilco" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 150–250</span>
+        <span class="note-tag">Reserve barca compartilhada • Tradicional e imperdível • Leve cerveja!</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Embarcadero+Nuevo+Nativitas+Xochimilco" target="_blank" class="link-btn">📍 Embarcadero Nativitas ↗</a>
+        <a href="https://maps.google.com/?q=Xochimilco+CDMX" target="_blank" class="link-btn">📍 Xochimilco ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -617,37 +842,64 @@
 <div class="section" id="dia18">
   <div class="section-header">
     <span class="day-badge">Dia 18</span>
-    <h2>🏙️ Roma Norte — Dia Perfeito</h2>
+    <h2>🏙️ Roma Norte + Condesa — Dia Caminhável</h2>
   </div>
   <div class="cards-grid">
     <div class="card wide">
-      <div class="card-label">🌅 Manhã</div>
-      <div class="card-name">Explorar Roma Norte</div>
-      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Café no hotel ✔ • Ruas de arte, galerias, livrarias</span></div>
+      <div class="card-label">🌅 Manhã — Explorar Roma Norte a pé</div>
+      <div class="card-name">Roma Norte — Ruas, Galerias, Livrarias</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Café no hotel ✔ • Arte de rua, arquitetura art déco</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Roma Norte ↗</a>
+      </div>
     </div>
     <div class="card lunch">
       <div class="card-label">🍽️ Almoço</div>
       <div class="card-name">Mercado Roma</div>
-      <div class="card-meta"><span class="price-tag">R$ 50–80</span><span class="note-tag">Gastronomia variada • Ótimo custo-benefício</span></div>
-      <a href="https://maps.google.com/?q=Mercado+Roma" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 50–80</span>
+        <span class="note-tag">Gastronomia variada e ótimo custo-benefício</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Mercado+Roma+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card coffee">
       <div class="card-label">☕ Café da Tarde (TOP)</div>
       <div class="card-name">Madre Café 🔥</div>
-      <div class="card-meta"><span class="price-tag">R$ 50–90</span><span class="note-tag">Melhor momento pra café especial</span></div>
-      <a href="https://maps.google.com/?q=Madre+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 50–90</span>
+        <span class="note-tag">Melhor café especial da viagem</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Madre+Cafe+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card afternoon">
-      <div class="card-label">🌳 Tarde — Parque</div>
-      <div class="card-name">Parque México</div>
-      <div class="card-meta"><span class="price-tag">Grátis</span><span class="note-tag">Caminhar, relaxar, vida local</span></div>
-      <a href="https://maps.google.com/?q=Parque+Mexico" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-label">🌳 Tarde — Parques</div>
+      <div class="card-name">Parque México + Parque España</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Caminhar, relaxar, vida local • Ótimo para fotos</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Parque+Mexico+CDMX" target="_blank" class="link-btn">📍 Parque México ↗</a>
+        <a href="https://maps.google.com/?q=Parque+Espana+Condesa+CDMX" target="_blank" class="link-btn">📍 Parque España ↗</a>
+      </div>
     </div>
     <div class="card night">
       <div class="card-label">🌇 Noite — Rooftop</div>
       <div class="card-name">Supra Roma Rooftop 🔥</div>
-      <div class="card-meta"><span class="price-tag">R$ 120–180</span><span class="note-tag">Vista panorâmica de Roma Norte</span></div>
-      <a href="https://maps.google.com/?q=Supra+Roma" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 120–180</span>
+        <span class="note-tag">Vista panorâmica de Roma Norte</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Supra+Roma+Rooftop+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -657,41 +909,86 @@
 <!-- DIA 19 -->
 <div class="section" id="dia19">
   <div class="section-header">
-    <span class="day-badge red">Dia 19</span>
-    <h2>🏛️ Último Dia Completo</h2>
+    <span class="day-badge teal">Dia 19</span>
+    <h2>🌆 Puebla + Cholula — Bate-Volta Colonial</h2>
   </div>
   <div class="cards-grid">
     <div class="card wide">
-      <div class="card-label">🌅 Manhã — Arquitetura</div>
-      <div class="card-name">🎟️ Casa Luis Barragán</div>
+      <div class="card-label">🚗 Saída Cedo da CDMX</div>
+      <div class="card-name">Deslocamento: Cidade do México → Puebla (~2h)</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 200</span>
-        <span class="reserve-tag">📅 Agendar</span>
-        <span class="note-tag">Café no hotel ✔</span>
+        <span class="price-tag paid">Carro alugado ou tour organizado</span>
+        <span class="note-tag">Sair às 7–8h • Autopista 150D</span>
       </div>
-      <a href="https://casaluisbarragan.org" target="_blank" class="link-btn">🎟 Agendar visita ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Puebla+Mexico" target="_blank" class="link-btn">📍 Puebla ↗</a>
+        <a href="https://www.getyourguide.com/mexico-city-l116/puebla-cholula-day-trip-t64281/" target="_blank" class="link-btn">🎟 Tour organizado (GetYourGuide) ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">🏛️ Manhã — Centro Histórico de Puebla</div>
+      <div class="card-name">Zócalo de Puebla + Catedral de Puebla</div>
+      <div class="card-meta">
+        <span class="price-tag free">Zócalo: Grátis</span>
+        <span class="price-tag free">Catedral: Grátis</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Zocalo+de+Puebla" target="_blank" class="link-btn">📍 Zócalo Puebla ↗</a>
+        <a href="https://maps.google.com/?q=Catedral+de+Puebla" target="_blank" class="link-btn">📍 Catedral ↗</a>
+      </div>
+    </div>
+    <div class="card afternoon">
+      <div class="card-label">💎 Manhã — Joia Barroca</div>
+      <div class="card-name">Capilla del Rosario + Callejón de los Sapos</div>
+      <div class="card-meta">
+        <span class="price-tag free">Capilla: Grátis (doação opcional)</span>
+        <span class="price-tag free">Callejón: Grátis</span>
+        <span class="note-tag">Interior da Capilla del Rosario é de tirar o fôlego</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Capilla+del+Rosario+Puebla" target="_blank" class="link-btn">📍 Capilla del Rosario ↗</a>
+        <a href="https://maps.google.com/?q=Callejon+de+los+Sapos+Puebla" target="_blank" class="link-btn">📍 Callejón dos Sapos ↗</a>
+      </div>
     </div>
     <div class="card lunch">
-      <div class="card-label">🍽️ Almoço</div>
-      <div class="card-name">Mercado San Juan</div>
-      <div class="card-meta"><span class="price-tag">R$ 50–100</span><span class="note-tag">Queijos importados, frutos do mar, gourmet</span></div>
-      <a href="https://maps.google.com/?q=Mercado+San+Juan" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="card-label">🍽️ Almoço — Gastronomia Poblana</div>
+      <div class="card-name">El Mural de los Poblanos</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 100–180</span>
+        <span class="reserve-tag">⚠ Reservar</span>
+        <span class="note-tag">Mole poblano autêntico • Vista para a Catedral</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=El+Mural+de+los+Poblanos+Puebla" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.elmuraldelospoblanos.com" target="_blank" class="link-btn">📅 Site oficial ↗</a>
+      </div>
     </div>
-    <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde</div>
-      <div class="card-name">Cardinal Casa de Café</div>
-      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Café especial e ambiente aconchegante</span></div>
-      <a href="https://maps.google.com/?q=Cardinal+Cafe" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+    <div class="card wide">
+      <div class="card-label">🏔️ Tarde — Cholula (15 min de Puebla)</div>
+      <div class="card-name">Grande Pirâmide de Cholula + Santuario de Nuestra Señora de los Remedios</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Zona arqueológica: Pago ~R$ 50</span>
+        <span class="price-tag free">Igreja no topo: Grátis</span>
+        <span class="note-tag">A maior pirâmide do mundo por volume • Vista incrível do vulcão Popocatépetl</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Gran+Piramide+de+Cholula" target="_blank" class="link-btn">📍 Grande Pirâmide ↗</a>
+        <a href="https://maps.google.com/?q=Santuario+Nuestra+Senora+de+los+Remedios+Cholula" target="_blank" class="link-btn">📍 Santuário ↗</a>
+        <a href="https://maps.google.com/?q=Cholula+Puebla" target="_blank" class="link-btn">📍 Cholula ↗</a>
+      </div>
     </div>
     <div class="card night wide">
-      <div class="card-label">🌙 Jantar Final — Despedida</div>
-      <div class="card-name">Máximo Bistrot ⭐</div>
+      <div class="card-label">🌙 Retorno + Jantar Final em CDMX</div>
+      <div class="card-name">Volta à CDMX + Máximo Bistrot ⭐</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 200–300</span>
+        <span class="price-tag paid">Jantar • R$ 200–300</span>
         <span class="reserve-tag">⚠ Reservar</span>
-        <span class="note-tag">Experiência gastronômica de nível — despedida perfeita</span>
+        <span class="note-tag">Chegar de volta ~19–20h • Jantar de despedida perfeito</span>
       </div>
-      <a href="https://maps.google.com/?q=Maximo+Bistrot" target="_blank" class="link-btn">📍 Ver no mapa ↗</a>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Maximo+Bistrot+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+        <a href="https://www.maximobistrot.com.mx" target="_blank" class="link-btn">📅 Reservar ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -702,35 +999,70 @@
 <div class="section" id="dia20">
   <div class="section-header">
     <span class="day-badge dark">Dia 20</span>
-    <h2>✈️ Dia Completo + Voo 00:40</h2>
+    <h2>✈️ Último Dia + Voo 00:40 — Saída ~21h</h2>
   </div>
   <div class="cards-grid">
     <div class="card wide">
-      <div class="card-label">🌅 Manhã — Dia disponível</div>
-      <div class="card-name">Café + Passeio final a definir</div>
-      <div class="card-meta"><span class="price-tag">Livre</span><span class="note-tag">Aproveite o hotel e explore os arredores</span></div>
+      <div class="card-label">🌅 Manhã — Roma, Condesa ou Polanco</div>
+      <div class="card-name">Passeio Leve pelo Bairro Favorito</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Último café da manhã • Aproveite sem pressa</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Roma Norte ↗</a>
+        <a href="https://maps.google.com/?q=Condesa+CDMX" target="_blank" class="link-btn">📍 Condesa ↗</a>
+        <a href="https://maps.google.com/?q=Polanco+CDMX" target="_blank" class="link-btn">📍 Polanco ↗</a>
+      </div>
     </div>
     <div class="card lunch">
       <div class="card-label">🍽️ Almoço</div>
-      <div class="card-name">Restaurante favorito ou novo</div>
-      <div class="card-meta"><span class="price-tag">R$ 60–150</span><span class="note-tag">Último almoço mexicano — capricha!</span></div>
+      <div class="card-name">Restaurante Favorito da Viagem</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 60–150</span>
+        <span class="note-tag">Último almoço mexicano — capricha na escolha!</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Lardo+CDMX" target="_blank" class="link-btn">📍 Lardo ↗</a>
+        <a href="https://maps.google.com/?q=El+Turix+Polanco+CDMX" target="_blank" class="link-btn">📍 El Turix ↗</a>
+        <a href="https://maps.google.com/?q=Mercado+Roma+CDMX" target="_blank" class="link-btn">📍 Mercado Roma ↗</a>
+      </div>
     </div>
     <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde</div>
-      <div class="card-name">Último café especial da viagem</div>
-      <div class="card-meta"><span class="price-tag">R$ 30–60</span><span class="note-tag">Escolha um dos favoritos</span></div>
+      <div class="card-label">☕ Café da Tarde — Último da Viagem</div>
+      <div class="card-name">Escolha um dos Favoritos</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 30–60</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Madre+Cafe+CDMX" target="_blank" class="link-btn">☕ Madre Café ↗</a>
+        <a href="https://maps.google.com/?q=Panaderia+Rosetta+CDMX" target="_blank" class="link-btn">☕ Rosetta ↗</a>
+        <a href="https://maps.google.com/?q=Quentin+Cafe+Polanco+CDMX" target="_blank" class="link-btn">☕ Quentin ↗</a>
+        <a href="https://maps.google.com/?q=Cafe+de+Tacuba+CDMX" target="_blank" class="link-btn">☕ Café de Tacuba ↗</a>
+      </div>
     </div>
     <div class="card afternoon">
-      <div class="card-label">☀️ Tarde — Últimas Experiências</div>
-      <div class="card-name">Artesanato / Souvenirs</div>
-      <div class="card-meta"><span class="price-tag">Variável</span><span class="note-tag">Presentinhos e recordações do México</span></div>
+      <div class="card-label">🎁 Tarde — Souvenirs</div>
+      <div class="card-name">Mercado de Artesanías La Ciudadela</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis (entrada)</span>
+        <span class="note-tag">Melhor mercado de artesanato da cidade — barganhe!</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Mercado+de+Artesanias+La+Ciudadela+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
     </div>
     <div class="card night wide">
-      <div class="card-label">🌙 Noite — Jantar + Aeroporto</div>
-      <div class="card-name">Jantar leve + Deslocamento ao Aeroporto NAICM ✈️</div>
+      <div class="card-label">🌙 Noite — Jantar Leve + Aeroporto</div>
+      <div class="card-name">Jantar Leve + Deslocamento ao Aeroporto NAICM ✈️</div>
       <div class="card-meta">
-        <span class="price-tag">R$ 50–100 + transfer</span>
-        <span class="note-tag">Sair com ~3h de antecedência • Voo 00:40 • Boa viagem! 🇧🇷</span>
+        <span class="price-tag paid">Jantar R$ 50–100 + transfer R$ 80–150</span>
+        <span class="reserve-tag">⚠ Sair do hotel às ~21h</span>
+        <span class="note-tag">Voo 00:40 • Chegar ao aeroporto com 3h de antecedência • Boa viagem! 🇧🇷</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Aeropuerto+Internacional+Felipe+Angeles+NAICM" target="_blank" class="link-btn">✈️ NAICM no Maps ↗</a>
+        <a href="https://www.aicm.com.mx" target="_blank" class="link-btn">✈️ Site AICM ↗</a>
       </div>
     </div>
   </div>
@@ -741,30 +1073,44 @@
 <!-- RESUMO -->
 <div class="section" id="resumo">
   <div class="section-header">
-    <h2>📋 Cafés • Rooftops • Custos • Checklist</h2>
+    <h2>📋 Cafés • Restaurantes • Rooftops • Checklist</h2>
   </div>
   <div class="summary-grid">
 
     <div class="summary-block">
       <div class="summary-header gold">☕ Melhores Cafés</div>
       <ul class="summary-list">
-        <li>☕ <span>Café de Tacuba — R$ 30–60 (Centro)</span></li>
-        <li>☕ <span>Panadería Rosetta — R$ 30–60 (Roma)</span></li>
-        <li>☕ <span>Quentin Café — R$ 30–50 (Polanco)</span></li>
-        <li>☕ <span>Café Avellaneda — R$ 30–50 (Coyoacán)</span></li>
-        <li>☕ <span>Madre Café — R$ 50–90 (Roma Norte) 🔥</span></li>
-        <li>☕ <span>Cardinal Casa de Café — R$ 30–60 (Centro)</span></li>
+        <li>☕ <a href="https://maps.google.com/?q=Cafe+de+Tacuba+CDMX" target="_blank">Café de Tacuba</a> — R$ 30–60 (Centro)</li>
+        <li>☕ <a href="https://maps.google.com/?q=Panaderia+Rosetta+CDMX" target="_blank">Panadería Rosetta</a> — R$ 30–60 (Roma) 🔥</li>
+        <li>☕ <a href="https://maps.google.com/?q=Quentin+Cafe+Polanco+CDMX" target="_blank">Quentin Café</a> — R$ 30–50 (Polanco)</li>
+        <li>☕ <a href="https://maps.google.com/?q=Cafe+Avellaneda+Coyoacan" target="_blank">Café Avellaneda</a> — R$ 30–50 (Coyoacán)</li>
+        <li>☕ <a href="https://maps.google.com/?q=Madre+Cafe+CDMX" target="_blank">Madre Café</a> — R$ 50–90 (Roma Norte) 🔥</li>
       </ul>
     </div>
 
     <div class="summary-block">
-      <div class="summary-header purple">🌇 Melhores Rooftops</div>
+      <div class="summary-header blue">🍽️ Melhores Restaurantes</div>
       <ul class="summary-list">
-        <li>🌇 <span>Terraza Cha Cha Cha — R$ 120–200 (Centro)</span></li>
-        <li>🌇 <span>Supra Roma Rooftop — R$ 120–180 (Roma)</span></li>
-        <li>🌇 <span>Vista das Pirâmides (Teotihuacán) 🎈</span></li>
-        <li>🌇 <span>Xochimilco (ao ar livre, dia)</span></li>
-        <li>🌇 <span>Bosque de Chapultepec (panorâmica)</span></li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Lardo+CDMX" target="_blank">Lardo CDMX</a> — Dia 13 (Roma)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Azul+Historico+CDMX" target="_blank">Azul Histórico</a> — Dia 14 (Centro)</li>
+        <li>🍽️ <a href="https://lagruta.com.mx" target="_blank">La Gruta</a> — Dia 15 (Teotihuacán) 🔥</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Contramar+CDMX" target="_blank">Contramar</a> — Dia 15 (Colonia Roma)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=El+Turix+Polanco+CDMX" target="_blank">El Turix</a> — Dia 16 (Polanco)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Los+Danzantes+Coyoacan" target="_blank">Los Danzantes</a> — Dia 17 (Coyoacán)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Mercado+Roma+CDMX" target="_blank">Mercado Roma</a> — Dia 18 (Roma)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=El+Mural+de+los+Poblanos+Puebla" target="_blank">El Mural de los Poblanos</a> — Dia 19 (Puebla)</li>
+        <li>🍽️ <a href="https://maps.google.com/?q=Maximo+Bistrot+CDMX" target="_blank">Máximo Bistrot</a> — Dia 19 (Roma) ⭐</li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <div class="summary-header purple">🌇 Melhores Rooftops & Vistas</div>
+      <ul class="summary-list">
+        <li>🌇 <a href="https://maps.google.com/?q=Terraza+Cha+Cha+Cha+CDMX" target="_blank">Terraza Cha Cha Cha</a> — R$ 120–200 (Centro)</li>
+        <li>🌇 <a href="https://maps.google.com/?q=Supra+Roma+Rooftop+CDMX" target="_blank">Supra Roma Rooftop</a> — R$ 120–180 (Roma)</li>
+        <li>🌇 <a href="https://maps.google.com/?q=Torre+Latinoamericana+CDMX" target="_blank">Torre Latinoamericana</a> — R$ 60 (Centro)</li>
+        <li>🌇 <a href="https://maps.google.com/?q=Castillo+de+Chapultepec+CDMX" target="_blank">Castelo de Chapultepec</a> — Vista panorâmica</li>
+        <li>🌇 <a href="https://maps.google.com/?q=Santuario+Nuestra+Senora+de+los+Remedios+Cholula" target="_blank">Cholula (topo da pirâmide)</a> — Vista do vulcão</li>
       </ul>
     </div>
 
@@ -773,26 +1119,32 @@
       <ul class="summary-list">
         <li>🍽️ <span>Refeições: R$ 50–300 por dia</span></li>
         <li>🎟️ <span>Museu Frida Kahlo: ~R$ 100</span></li>
-        <li>🎈 <span>Balão Teotihuacán: R$ 900–1.200</span></li>
+        <li>🎈 <span>Balão Teotihuacán (opc.): R$ 900–1.200</span></li>
+        <li>🏔️ <span>Entrada Teotihuacán: ~R$ 60</span></li>
         <li>🚤 <span>Xochimilco: R$ 150–250</span></li>
         <li>🥊 <span>Lucha Libre: R$ 80–200</span></li>
-        <li>🏛️ <span>Casa Barragán: R$ 200</span></li>
-        <li>🚲 <span>Bike Chapultepec: R$ 30–60</span></li>
+        <li>🏛️ <span>Museu de Antropologia: ~R$ 60</span></li>
+        <li>🏰 <span>Castelo de Chapultepec: ~R$ 50</span></li>
+        <li>🌆 <span>Cholula (zona arq.): ~R$ 50</span></li>
+        <li>🚗 <span>Transporte Puebla: R$ 200–400</span></li>
         <li>✈️ <span>Transfer aeroporto: R$ 80–150</span></li>
       </ul>
     </div>
 
-    <div class="summary-block">
-      <div class="summary-header">✅ Checklist Pré-Viagem</div>
+    <div class="summary-block" style="grid-column: 1 / -1;">
+      <div class="summary-header">✅ Checklist Pré-Viagem — Comprar / Reservar Antes</div>
       <ul class="summary-list">
-        <li>🎟️ <a href="https://www.getyourguide.com" target="_blank">Balão Teotihuacán — getyourguide.com</a></li>
-        <li>🎟️ <a href="https://boletos.museofridakahlo.org.mx" target="_blank">Frida Kahlo — boletos.museofridakahlo.org.mx</a></li>
-        <li>🎟️ <a href="https://www.ticketmaster.com.mx" target="_blank">Lucha Libre — ticketmaster.com.mx</a></li>
-        <li>📅 <span>Azul Histórico — reservar</span></li>
-        <li>📅 <span>Terraza Cha Cha Cha — reservar</span></li>
-        <li>📅 <span>Contramar — reservar</span></li>
-        <li>📅 <span>Máximo Bistrot — reservar</span></li>
-        <li>📅 <a href="https://casaluisbarragan.org" target="_blank">Casa Barragán — casaluisbarragan.org</a></li>
+        <li>🎟️ <a href="https://boletos.museofridakahlo.org.mx" target="_blank">Frida Kahlo — Comprar antes (esgota!) ↗</a></li>
+        <li>🎟️ <a href="https://www.ticketmaster.com.mx" target="_blank">Lucha Libre — Comprar antes ↗</a></li>
+        <li>🎈 <a href="https://www.globoantiguo.com" target="_blank">Balão Teotihuacán (opcional) — Comprar antes ↗</a></li>
+        <li>📅 <a href="https://lagruta.com.mx" target="_blank">La Gruta (Teotihuacán) — Reservar ↗</a></li>
+        <li>📅 <a href="https://www.contramar.com.mx" target="_blank">Contramar — Reservar ↗</a></li>
+        <li>📅 <span>Azul Histórico — Reservar (OpenTable ou telefone)</span></li>
+        <li>📅 <a href="https://www.instagram.com/terrazachachacha" target="_blank">Terraza Cha Cha Cha — Reservar via Instagram ↗</a></li>
+        <li>📅 <a href="https://losdanzantes.com" target="_blank">Los Danzantes — Reservar se possível ↗</a></li>
+        <li>📅 <a href="https://www.elmuraldelospoblanos.com" target="_blank">El Mural de los Poblanos — Reservar ↗</a></li>
+        <li>📅 <a href="https://www.maximobistrot.com.mx" target="_blank">Máximo Bistrot — Reservar ↗</a></li>
+        <li>🚗 <a href="https://www.getyourguide.com/mexico-city-l116/puebla-cholula-day-trip-t64281/" target="_blank">Puebla/Cholula — Definir: carro alugado ou tour ↗</a></li>
       </ul>
     </div>
 
@@ -801,7 +1153,7 @@
 
 <footer>
   <strong>🇲🇽 México — Roteiro de Viagem</strong><br>
-  Cidade do México • Dias 13–20 • Bom apetite e boa aventura! 🌮🎉
+  Cidade do México • Teotihuacán • Puebla • Cholula &nbsp;|&nbsp; Dias 13–20 &nbsp;|&nbsp; Bom apetite e boa aventura! 🌮🎉
 </footer>
 
 <script>
@@ -809,17 +1161,14 @@
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Intersection observer for section animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-  // Nav active state
-  const sections = document.querySelectorAll('.section');
+  const sectionIds = ['visao','dia13','dia14','dia15','dia16','dia17','dia18','dia19','dia20','resumo'];
   const navBtns = document.querySelectorAll('.nav-btn');
-  const sectionIds = ['visao','dia13','dia15','dia16','dia17','dia18','dia19','dia20','resumo'];
 
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
