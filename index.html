@@ -291,6 +291,25 @@
   .options-box h4 { font-size: 0.8rem; font-weight: 700; color: #A87C2A; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
   .options-box p { font-size: 0.85rem; color: var(--texto); margin-bottom: 0.3rem; }
 
+  /* ── FLOW INDICATOR (novo para dia 18) ── */
+  .flow-bar {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #f0faf5, #fff9f0);
+    border: 1.5px solid #c8e6d8;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--verde-dark);
+    letter-spacing: 0.03em;
+  }
+  .flow-bar span { color: var(--cinza); font-weight: 400; }
+  .flow-sep { color: var(--ouro); font-size: 1rem; }
+
   /* ── SUMMARY ── */
   .summary-grid {
     display: grid;
@@ -302,6 +321,7 @@
     .summary-grid { grid-template-columns: 1fr; }
     .cards-grid.two { grid-template-columns: 1fr; }
     .hero-overlay { padding: 2rem 1.5rem; }
+    .flow-bar { gap: 0.3rem; }
   }
 
   .summary-block {
@@ -431,7 +451,7 @@
     <div class="overview-card">
       <div class="ov-day">Dia 18</div>
       <div class="ov-label">🏙️ Roma Norte + Condesa</div>
-      <div class="ov-desc">Mercado Roma • Madre Café • Parque México • Supra Rooftop</div>
+      <div class="ov-desc">Álvaro Obregón • Mercado Roma • Madre Café • MUCHO • Parques • Limantour • Supra</div>
     </div>
     <div class="overview-card teal">
       <div class="ov-day">Dia 19</div>
@@ -838,69 +858,119 @@
 
 <div class="divider"></div>
 
-<!-- DIA 18 -->
+<!-- DIA 18 — UPGRADED -->
 <div class="section" id="dia18">
   <div class="section-header">
     <span class="day-badge">Dia 18</span>
-    <h2>🏙️ Roma Norte + Condesa — Dia Caminhável</h2>
+    <h2>🏙️ Roma Norte + Condesa — Experiência Urbana Completa</h2>
   </div>
   <div class="cards-grid">
+
+    <div class="flow-bar">
+      🌅 Caminhada guiada
+      <span class="flow-sep">→</span>
+      🍽️ Almoço
+      <span class="flow-sep">→</span>
+      ☕ Café especial
+      <span class="flow-sep">→</span>
+      🎨 Museu
+      <span class="flow-sep">→</span>
+      🌳 Parques
+      <span class="flow-sep">→</span>
+      🍸 Bar premiado
+      <span class="flow-sep">→</span>
+      🌇 Rooftop
+      <span style="margin-left:0.5rem; font-size:0.72rem; color:#999; font-style:italic;">— tudo a pé</span>
+    </div>
+
     <div class="card wide">
-      <div class="card-label">🌅 Manhã — Explorar Roma Norte a pé</div>
-      <div class="card-name">Roma Norte — Ruas, Galerias, Livrarias</div>
+      <div class="card-label">🌅 Manhã — Caminhada Guiada por Roma Norte</div>
+      <div class="card-name">Plaza Río de Janeiro → Álvaro Obregón → Ruas Orizaba & Colima</div>
       <div class="card-meta">
         <span class="price-tag free">Grátis</span>
-        <span class="note-tag">Café no hotel ✔ • Arte de rua, arquitetura art déco</span>
+        <span class="note-tag">Café no hotel ✔ • Rota estruturada: comece na Plaza Río de Janeiro, siga pelo boulevard arborizado da Álvaro Obregón e explore as ruas Orizaba e Colima — galerias de arte, livrarias independentes, fachadas porfirianas e art déco</span>
       </div>
       <div class="links-row">
-        <a href="https://maps.google.com/?q=Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Roma Norte ↗</a>
+        <a href="https://maps.google.com/?q=Plaza+Rio+de+Janeiro+Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Plaza Río de Janeiro ↗</a>
+        <a href="https://maps.google.com/?q=Avenida+Alvaro+Obregon+Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Álvaro Obregón ↗</a>
       </div>
     </div>
+
     <div class="card lunch">
-      <div class="card-label">🍽️ Almoço</div>
+      <div class="card-label">🍽️ Almoço — No fluxo da caminhada</div>
       <div class="card-name">Mercado Roma</div>
       <div class="card-meta">
         <span class="price-tag paid">Pago • R$ 50–80</span>
-        <span class="note-tag">Gastronomia variada e ótimo custo-benefício</span>
+        <span class="note-tag">Gastronomia variada • Prático e excelente custo-benefício • Dentro do roteiro a pé</span>
       </div>
       <div class="links-row">
         <a href="https://maps.google.com/?q=Mercado+Roma+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
       </div>
     </div>
+
     <div class="card coffee">
-      <div class="card-label">☕ Café da Tarde (TOP)</div>
+      <div class="card-label">☕ Café da Tarde — Destaque do Dia</div>
       <div class="card-name">Madre Café 🔥</div>
       <div class="card-meta">
         <span class="price-tag paid">Pago • R$ 50–90</span>
-        <span class="note-tag">Melhor café especial da viagem</span>
+        <span class="note-tag">Melhor café especial da viagem — não pule este</span>
       </div>
       <div class="links-row">
         <a href="https://maps.google.com/?q=Madre+Cafe+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
       </div>
     </div>
-    <div class="card afternoon">
-      <div class="card-label">🌳 Tarde — Parques</div>
-      <div class="card-name">Parque México + Parque España</div>
+
+    <div class="card optional afternoon">
+      <div class="card-label">🎨 Cultura — Recomendado</div>
+      <div class="card-name">Museo del Objeto del Objeto — MUCHO</div>
       <div class="card-meta">
-        <span class="price-tag free">Grátis</span>
-        <span class="note-tag">Caminhar, relaxar, vida local • Ótimo para fotos</span>
+        <span class="price-tag paid">Pago • R$ 30–50</span>
+        <span class="optional-tag">Opcional — recomendado</span>
+        <span class="note-tag">Museu de design e cultura material mexicana • 40–60 min • Pequeno, denso e surpreendente</span>
       </div>
       <div class="links-row">
-        <a href="https://maps.google.com/?q=Parque+Mexico+CDMX" target="_blank" class="link-btn">📍 Parque México ↗</a>
-        <a href="https://maps.google.com/?q=Parque+Espana+Condesa+CDMX" target="_blank" class="link-btn">📍 Parque España ↗</a>
+        <a href="https://maps.google.com/?q=Museo+del+Objeto+del+Objeto+MUCHO+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
       </div>
     </div>
+
+    <div class="card afternoon wide">
+      <div class="card-label">🌳 Tarde — Parques da Condesa em Sequência</div>
+      <div class="card-name">Parque España → Parque México</div>
+      <div class="card-meta">
+        <span class="price-tag free">Grátis</span>
+        <span class="note-tag">Um leva naturalmente ao outro a pé • Vida local, cães, ciclistas, cafés de calçada • Perfeito para desacelerar antes da noite</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Parque+Espana+Condesa+CDMX" target="_blank" class="link-btn">📍 Parque España ↗</a>
+        <a href="https://maps.google.com/?q=Parque+Mexico+CDMX" target="_blank" class="link-btn">📍 Parque México ↗</a>
+      </div>
+    </div>
+
+    <div class="card optional night">
+      <div class="card-label">🍸 Pré-Noite — Bar Premiado (Altamente Recomendado)</div>
+      <div class="card-name">Licorería Limantour</div>
+      <div class="card-meta">
+        <span class="price-tag paid">Pago • R$ 80–130</span>
+        <span class="optional-tag">Opcional — não perca</span>
+        <span class="note-tag">Um dos melhores bares da América Latina • Coquetéis autorais com ingredientes mexicanos • Parada rápida antes do rooftop — combine perfeitamente com o encerramento do dia</span>
+      </div>
+      <div class="links-row">
+        <a href="https://maps.google.com/?q=Licoreria+Limantour+Roma+Norte+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
+      </div>
+    </div>
+
     <div class="card night">
       <div class="card-label">🌇 Noite — Rooftop</div>
       <div class="card-name">Supra Roma Rooftop 🔥</div>
       <div class="card-meta">
         <span class="price-tag paid">Pago • R$ 120–180</span>
-        <span class="note-tag">Vista panorâmica de Roma Norte</span>
+        <span class="note-tag">Vista panorâmica de Roma Norte • Reserva não obrigatória, mas recomendada nos fins de semana</span>
       </div>
       <div class="links-row">
         <a href="https://maps.google.com/?q=Supra+Roma+Rooftop+CDMX" target="_blank" class="link-btn">📍 Google Maps ↗</a>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -1111,6 +1181,7 @@
         <li>🌇 <a href="https://maps.google.com/?q=Torre+Latinoamericana+CDMX" target="_blank">Torre Latinoamericana</a> — R$ 60 (Centro)</li>
         <li>🌇 <a href="https://maps.google.com/?q=Castillo+de+Chapultepec+CDMX" target="_blank">Castelo de Chapultepec</a> — Vista panorâmica</li>
         <li>🌇 <a href="https://maps.google.com/?q=Santuario+Nuestra+Senora+de+los+Remedios+Cholula" target="_blank">Cholula (topo da pirâmide)</a> — Vista do vulcão</li>
+        <li>🍸 <a href="https://maps.google.com/?q=Licoreria+Limantour+Roma+Norte+CDMX" target="_blank">Licorería Limantour</a> — Bar premiado (Dia 18)</li>
       </ul>
     </div>
 
@@ -1125,6 +1196,8 @@
         <li>🥊 <span>Lucha Libre: R$ 80–200</span></li>
         <li>🏛️ <span>Museu de Antropologia: ~R$ 60</span></li>
         <li>🏰 <span>Castelo de Chapultepec: ~R$ 50</span></li>
+        <li>🎨 <span>MUCHO (Dia 18): ~R$ 30–50</span></li>
+        <li>🍸 <span>Limantour (Dia 18): R$ 80–130</span></li>
         <li>🌆 <span>Cholula (zona arq.): ~R$ 50</span></li>
         <li>🚗 <span>Transporte Puebla: R$ 200–400</span></li>
         <li>✈️ <span>Transfer aeroporto: R$ 80–150</span></li>
